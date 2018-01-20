@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>주문</title>
+  </head>
+  <body>
+    {% block content %}
+        <h1>농산물 주문</h1>
+        <form action="./" method="POST" class="order-form">{% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" name="" value="주문하기">
+        </form>
+        <br/><br/><br/>
+        <h2>농산물 주문 설명</h2>
+        등급별 가격 안내.
+        A등급 : 35,000원
+        B등급 : 30,000원
+
+        택배 배송비 안내.
+        1box : 3,000원
+        2box : 4,000원
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>주문 확인</title>
+  </head>
+  <body>
+    {% block content %}
+      농장주 번호 : {{order.farmer_phone}} <br/>
+      보내는 분 이름 : {{order.from_name}} <br/>
+      보내는 분 번호 : {{order.from_phone}} <br/>
+      받는 분 이름 : {{order.to_name}} <br/>
+      받는 분 번호 : {{order.to_phone}} <br/>
+      받는 분 주소 : {{order.to_address}} <br/>
+      주문 수량 : {{order.quantity}} <br/>
+      상품 등급 : {{order.grade}} <br/>
+      주문 가격 : {{order.price}} <br/>
+      <a href="{% url 'orderedit' pk=order.pk %}"><input type="submit" name="revise_button" value="수정"></a>   <a href="http://127.0.0.1:8000/order/confirm/"><input type="Submit" name="confirm_button" value="주문"></a>
+    {% endblock %}
+  </body>
+</html>

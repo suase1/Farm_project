@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>주문 내역</title>
+    <style media="screen">
+      input{
+        font-weight: lighter;
+        font: gray;
+      }
+      nav{
+        font: gray;
+        font-size: 12px;
+      }
+      table.each_order{
+        border-collapse: collapse;
+        text-align: center;
+        line-height: 1.5;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        margin: 20px 10px;
+      }
+      table.each_order thead th{
+        width: 150px;
+        padding: 10px;
+        /* font-weight: bold; */
+        vertical-align: top;
+        /* color: black; */
+        background: #0881A3;
+        /* background: #F0C0CE; */
+        margin: 20px 10px;
+      }
+      table.each_order thead td {
+        background: #0881A3;
+          /* background: #fdf3f5; */
+      }
+      table.each_order tbody th{
+        width: 150px;
+        padding: 10px;
+        background: #FDE9DF;
+      }
+      table.each_order td{
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+      }
+
+    </style>
+  </head>
+  <body>
+    <form action="." method="POST">{% csrf_token %}
+      {{form.as_table}}
+      <input type="submit" name="" value="입력">   <nav>(날짜 입력 형태 : YYYY-MM-DD)</nav>
+    </form>
+
+    <br/><br/>
+    농장주 번호 : {{farmer_number}}
+    <br/><br/>
+    {% if object_list %}
+    {% for order in object_list %}
+    <table class=each_order>
+      <thead>
+      <tr>
+        <th>주문 번호</td>
+        <td> # 번호</td>
+        <th>주문 시간</td>
+        <td colspan=2>{{order.order_date}}</td>
+        <th>주문 가격</th>
+        <td>{{order.price}} 원</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>보내는 분</th>
+        <td>{{order.from_name}}</td>
+        <td>{{order.from_phone}}</td>
+        <th>수량</th>
+        <td>{{order.quantity}} box</td>
+        <th>옵션</th>
+        <td>{{order.grade}} 등급</td>
+      </tr>
+      <tr>
+        <th>받는 분</th>
+        <td>{{order.to_name}}</td>
+        <td>{{order.to_phone}}</td>
+        <td colspan=4 >{{order.to_address}}</td>
+      </tr>
+      </tbody>
+    </table>
+    {% endfor %}
+    {% elif search_date %}
+      입력하신 날짜({{search_date}})에 해당하는 주문 내역이 없습니다.
+    {% endif%}
+  <br/>
+
+
+
+    <!-- {% if object_list %}
+    {% for order in object_list %}
+      {{order.order_date}} <br/>
+      농장주 번호 : {{order.farmer_phone}}  #나중에 지울 부분 <br/>
+      보내는 분 이름 : {{order.from_name}}     보내는 분 번호 : {{order.from_phone}} <br/>
+      받는 분 이름 : {{order.to_name}}     받는 분 번호 : {{order.to_phone}}     받는 분 주소 : {{order.to_address}} <br/>
+      주문 수량 : {{order.quantity}}     상품 등급 : {{order.grade}}     주문 가격 : {{order.price}} <br/>
+      <br/><br/>
+    {% endfor %}
+
+    {% elif search_date %}
+      입력하신 날짜({{search_date}})에 해당하는 주문 내역이 없습니다.
+    {% endif%} -->
+  </body>
+</html>

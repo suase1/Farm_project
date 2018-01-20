@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>orderlist</title>
+  </head>
+  <body>
+    {% block content %}
+      <div class="">
+        <h1>Please login</h1>
+        <form class="" action="" method="post">{% csrf_token %}
+          <p>Please enter your id and password.</p>
+          <fieldset>
+            <div class="">
+              {{form.username.label_tag}} {{form.username}}
+            </div>
+            <div class="">
+              {{form.password.label_tag}} {{form.password}}
+            </div>
+          </fieldset>
+          <div class="">
+            <input type="submit" name="" value="Log in">
+            <input type="hidden" name="next" value="{{next}}">
+          </div>
+        </form>
+      </div>
+    {% endblock %}
+  </body>
+</html>
